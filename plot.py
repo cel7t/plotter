@@ -365,7 +365,7 @@ def draw_manhattan_plot(df, draw_peak, threshold_value, hovering_enabled, marker
         df_range = df_end - df_start
         if debug_flag:
             print("Start:", df_start, "End:", df_end, "Range:", df_range)
-        df_blk_size = 100000 # int(df_range // num_of_blks)
+        df_blk_size = bin_size
         num_of_blks = df_range//df_blk_size
         df2 = pd.DataFrame({'snp': [0]*num_of_blks, 'blkpos': [0]*num_of_blks})
         for i in range(num_of_blks):
@@ -523,7 +523,7 @@ if __name__ == "__main__":
     parser.add_argument('--marker-file', default=None, nargs='?', type=str, help='Path to the marker file')
     parser.add_argument('--trait', default=None, nargs='?', type=str, help='Trait name for AraQTL file')
     parser.add_argument('--chromosome', default=None, nargs='?', type=str, help='Selected chromosome')
-    parser.add_argument('--bin-size', default=10000, nargs='?', type=int, help='Bin size for SNP density')
+    parser.add_argument('--bin-size', default=100000, nargs='?', type=int, help='Bin size for SNP density')
     parser.add_argument('--centromeres', default=None, nargs='?', type=str, help='Path to the centromere file')
     args = parser.parse_args()
     if args.line is True:
