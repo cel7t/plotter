@@ -9,7 +9,7 @@ For the most basic usage, just pass the file to the program like such:
 #+BEGIN_SRC shell
   ./plot.py data.csv
   # or in the case of rQTL files
-  ./plot.py data.txt
+  ./plot.py data.txt --line
 #+END_SRC
 After this, resize the plot and click on markers of interest to select them.
 The plotter comes with 13 optional command-line arguments that can be used to control various parameters
