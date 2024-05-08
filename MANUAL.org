@@ -1,0 +1,94 @@
+#+TITLE:GWAS Plotter Manual
+[[./EXAMPLE.png]]
+* INSTALLATION
+This program relies on a number of libraries specified in ~requirements.txt~.
+The best way to use it is to create a [[https://docs.python.org/3/library/venv.html][Python virtual environment]] and then install these packages in it.
+Additionally, having [[https://github.com/junegunn/fzf][fzf]] installed on the system is required for the QTL trait selection menu.
+* USAGE
+For the most basic usage, just pass the file to the program like such:
+#+BEGIN_SRC shell
+  ./plot.py data.csv
+  # or in the case of rQTL files
+  ./plot.py data.txt
+#+END_SRC
+After this, resize the plot and click on markers of interest to select them.
+The plotter comes with 13 optional command-line arguments that can be used to control various parameters
+** ~--hover~ (RECOMMENDED)
+This option shows the details of the marker the mouse pointer is currently hovering over in a tooltip.
+Users can right-click to toggle hover on and off.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --hover
+#+END_SRC
+** ~--two-color~
+This option makes the plotter use two colors instead of multiple colors.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --two-color
+#+END_SRC
+** ~--peak~
+This option draws a vertical line through the peak value.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --two-color
+#+END_SRC
+** ~--threshold~
+This option draws a threshold line at a given -logP value.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --threshold 2.0
+#+END_SRC
+** ~--debug~ or ~-d~
+This option prints debugging-related messages.
+#+BEGIN_SRC shell
+  ./plot.py data.csv -d
+#+END_SRC
+** ~--line~
+This option makes the program draw a QTL plot instead of a Manhattan plot.
+#+BEGIN_SRC shell
+  ./plot.py data.txt --line
+#+END_SRC
+** ~--markers~
+When passed a file containing names of markers to this option, the program automatically selects (marks) them.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --markers markers.txt
+#+END_SRC
+** ~--marker-file~
+Path to the marker file for QTL plots
+#+BEGIN_SRC shell
+  ./plot.py data.txt --line --marker-file qtl_markers.txt
+#+END_SRC
+** ~--trait~
+Trait name to be selected in the QTL plot. If this is not selected, a fzf-based selection menu is shown.
+#+BEGIN_SRC shell
+  ./plot.py data.txt --line --trait "AT1G01160" --marker-file qtl_markers.txt
+#+END_SRC
+** ~--chromosome~
+When passed a character, only the chromosome with a matching name is shown.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --chromosome 2
+#+END_SRC
+** ~--snp-density~
+This option makes the program draw the SNP density when used in conjunction with ~--chromosome~
+#+BEGIN_SRC shell
+  ./plot.py data.csv --chromosome 2 --snp-density
+#+END_SRC
+** ~--bin-size~
+This option sets the bin size for SNP density.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --chromosome 2 --snp-density --bin-size 15000
+#+END_SRC
+** ~--centromeres~
+When passed the path to a centromere file, it draws vertical lines at the centromere positions.
+#+BEGIN_SRC shell
+  ./plot.py data.csv --centromeres p-arm-length.txt
+#+END_SRC
+* EXAMPLES
+To draw a Manhattan plot with hovering, peak line, threshold line and centromere lines
+#+BEGIN_SRC shell
+  ./plot.py data.csv --peak --threshold 2.0 --hover --centromeres p-arm-length.txt
+#+END_SRC
+To draw a QTL plot with a marker file, hovering, peak line, threshold line and with menu selection for the desired trait
+#+BEGIN_SRC shell
+  ./plot.py data.txt --line --marker-file marker.txt --peak --threshold 1.0 --hover
+#+END_SRC
+To draw the single chromosome '2' with SNP density, hover, peak line and threshold line
+#+BEGIN_SRC shell
+  ./plot.py data.csv --peak --threshold 2.0 --hover --chromosome 2 --snp-density
+#+END_SRC
