@@ -1,10 +1,10 @@
-#+TITLE:GWAS Plotter Manual
+#+TITLE:GWAS Plotter
 [[./EXAMPLE.png]]
-* INSTALLATION
+* Installation
 This program relies on a number of libraries specified in ~requirements.txt~.
 The best way to use it is to create a [[https://docs.python.org/3/library/venv.html][Python virtual environment]] and then install these packages in it.
 Additionally, having [[https://github.com/junegunn/fzf][fzf]] installed on the system is required for the QTL trait selection menu.
-* USAGE
+* Usage
 For the most basic usage, just pass the file to the program like such:
 #+BEGIN_SRC shell
   ./plot.py data.csv
@@ -79,7 +79,7 @@ When passed the path to a centromere file, it draws vertical lines at the centro
 #+BEGIN_SRC shell
   ./plot.py data.csv --centromeres p-arm-length.txt
 #+END_SRC
-* EXAMPLES
+* Examples
 To draw a Manhattan plot with hovering, peak line, threshold line and centromere lines
 #+BEGIN_SRC shell
   ./plot.py data.csv --peak --threshold 2.0 --hover --centromeres p-arm-length.txt
